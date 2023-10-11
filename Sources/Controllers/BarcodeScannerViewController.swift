@@ -338,12 +338,13 @@ extension BarcodeScannerViewController: CameraViewControllerDelegate {
 
     var rawType = metadataObj.type.rawValue
 
+    // Removing this in this fork.
     // UPC-A is an EAN-13 barcode with a zero prefix.
     // See: https://stackoverflow.com/questions/22767584/ios7-barcode-scanner-api-adds-a-zero-to-upca-barcode-format
-    if metadataObj.type == AVMetadataObject.ObjectType.ean13 && code.hasPrefix("0") {
+    /*if metadataObj.type == AVMetadataObject.ObjectType.ean13 && code.hasPrefix("0") {
       code = String(code.dropFirst())
       rawType = AVMetadataObject.ObjectType.upca.rawValue
-    }
+    }*/
 
     codeDelegate?.scanner(self, didCaptureCode: code, type: rawType)
     animateFlash(whenProcessing: isOneTimeSearch)
